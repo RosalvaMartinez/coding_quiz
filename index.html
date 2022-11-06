@@ -8,7 +8,7 @@
   <!--Bootstrap Link-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="assets/css/style.css">
   <title>Coding Quiz</title>
 </head>
 
@@ -16,52 +16,63 @@
   <header>
   </header>
   <main>
-    <div>
+    <div id="homescreen">
       <h1>Welcome to the Coding Quiz!</h1>
       <p>Click the button below to see how much you know about different computer languages!</p>
-      <h2 id="countdown"></h2>
       <button type="button" id="startButton" class="btn btn-danger">Start</button>
     </div>
     <!--Question BS Component-->
-    <div class="card">
+    <div id="questions" class="card">
+      <h2 id="countdown"></h2>
       <div class="card-body">
         <h5 class="card-title">Question 1</h5>
         <p class="card-text">What does HTML stand for?</p>
-        <div class="d-flex flex-column" style="width: 250px">
-          <a href="#" class="btn btn-primary text-left my-1">A. Haters Take Mean L's </a>
-          <a href="#" class="btn btn-primary text-left my-1">B. Hyper Mark Up Text</a>
-          <a href="#" class="btn btn-primary text-left my-1">C. Had To Make Lasagna</a>
-          <a href="#" class="btn btn-primary text-left my-1">D. Hyper Make Up Text</a>
+        <div id="answerChoices" class="d-flex flex-column" style="width: 250px">
+          <a href="#" id="A" class="btn btn-primary text-left my-1">A. Haters Take Mean L's </a>
+          <a href="#" id="B" class="btn btn-primary text-left my-1">B. Hyper Mark Up Text</a>
+          <a href="#" id="C" class="btn btn-primary text-left my-1">C. Had To Make Lasagna</a>
+          <a href="#" id="D" class="btn btn-primary text-left my-1">D. Hyper Make Up Text</a>
+        </div>
+      </div>
+    </div>
+    <!--FALSE/CORRECT alert Component-->
+    <div id="false" class="alert alert-danger" role="alert">
+      FALSE!
+    </div>
+    <div id="correct" class="alert alert-success" role="alert">
+      CORRECT!
+    </div>
+    <!--All Done Page Initials Component-->
+    <div id="initials" class="card">
+      <div class="card-body">
+        ALL DONE!
+        <p id="score"></p>
+      </div>
+      <div class="input-group mb-3">
+        <input maxlength="3" id="input" type="text" class="form-control"
+          placeholder="Enter your initials here to save your score!" aria-label="Recipient's username"
+          aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" id="submit">submit</button>
         </div>
       </div>
     </div>
     <!--High Score BS Component-->
-    <table class="table table-striped table-dark">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Initials</th>
-          <th scope="col">Score</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>RHM</td>
-          <td>100</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>AB</td>
-          <td>70</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>AZ</td>
-          <td>10</td>
-        </tr>
-      </tbody>
-    </table>
+    <div id="chart">
+      <table class="table table-striped table-dark">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Initials</th>
+            <th scope="col">Score</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <button id="clearHighScores" type="button" class="btn btn-danger">Clear High Scores</button>
+      <button id="goHome" type="button" class="btn btn-primary">Go Home</button>
+    </div>
   </main>
   <footer>
 
@@ -76,7 +87,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-    <script src="script.js"></script>
-  </body>
+  <script src="assets/js/script.js"></script>
+</body>
 
 </html>
