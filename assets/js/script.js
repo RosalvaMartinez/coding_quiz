@@ -6,10 +6,11 @@ $("#startButton").on('click', startQuiz)
 $("#submit").on("click", submitHighScore)
 $("#clearHighScores").on("click", clearHighScores)
 $("#goHome").on("click", goHome)
+$("#highscore").on("click", showHS)
 //global variables to handle game logic
 var timerEl = $("#countdown")
 var timeLeft = 60;
-var timeInterval = null 
+var timeInterval = null
 //global objects to handle game scoring 
 var highScores = []
 var score = 0
@@ -21,42 +22,50 @@ function startQuiz() {
     //question is presented and the timer is visible
     $("#questions").show()
     $("#countdown").show()
+    //start score back at 0
+    score = 0
     //start Timer
     countdown()
     //array of objects containing information pertaining to each
     //question and its correct answer and incorrect answer
     var questionsList = [
         {
-            number: 1,
-            question: "what is your fav color",
-            answer: ["blue", "red", "yellow", "green"],
-            correctAnswer: "green"
+            question: "What is an array?",
+            answer: ["objects stored in a list type structure", "data items of the same type collected at contiguous memory locations", "data items of the same type collected at contiguous memory locations", "all of the above"],
+            correctAnswer: "all of the above"
         },
         {
-            number: 2,
-            question: "what is your fav pie",
-            answer: ["cherry", "apple", "pecan", "i hate pie"],
-            correctAnswer: "pecan"
+            question: "Where should a variable be stored in order to be used in a function without being passed in a parameter?",
+            answer: ["globally", "in the scope", "in the function", "you don't have to store it as a variable"],
+            correctAnswer: "globally"
         },
         {
-            number: 3,
-            question: "what is your fav snack",
-            answer: ["sushi", "ramen", "hummus", "salmon"],
-            correctAnswer: "sushi"
+            question: "what do we call a function that responds to an event?",
+            answer: ["target", "event listener", "event handler", "null"],
+            correctAnswer: "event handler"
         },
         {
-            number: 4,
-            question: "what is your fav place",
-            answer: ["Germany", "San Antonio", "NY", "anywhere with a bathouse"],
-            correctAnswer: "Germany"
+            question: "what does HTML stand for?",
+            answer: ["Hyper Text Markup Linguini", "Hyper Text Markup Language", "Had To Make Lasagna", "Hyper Text Makeup Language"],
+            correctAnswer: "Hyper Text Markup Language"
+        },
+        {
+            question: "What method is used to convert objects in such a way before they are allowed to be saved to local storage?",
+            answer: [".stringify()", ".localStorage()", ".spaghetti", ".storeLocally()"],
+            correctAnswer: ".stringify()"
         }
     ]
+    //variable that holds total num of questions
+    var total = questionsList.length
+    var i = 0
+    $("#correct").hide();
+    $("#false").hide();
     //question 1 is presented along with its answers
     //removing the last question object from the questionList 
     //and returning that question object to the var currentQuestion
     let currentQuestion = questionsList.pop()
     //targeting and injecting question number into question number component in index
-    $("#card-title").text(currentQuestion.number)
+    $(".card-title").text(`Question ${i + 1} / ${total}`)
     //targeting and injecting question into question component in index
     $(".card-text").text(currentQuestion.question)
     //targeting and injecting answers into each answer component in index
@@ -67,6 +76,8 @@ function startQuiz() {
     //event listener on answer choices using delegation to determine what 
     //answer choice was clicked but running same event handler for each one 
     $("#answerChoices").on("click", function (event) {
+        //increment question number by 1 with every click
+        i++
         //checking for correct answer by comparing choice clicked to 
         //correct answer in currentQuestion object
         if ($(event.target).text() === currentQuestion.correctAnswer) {
@@ -91,7 +102,7 @@ function startQuiz() {
                 $("#correct").hide();
                 $("#false").hide();
                 currentQuestion = questionsList.pop()
-                $("#card-title").text(currentQuestion.number)
+                $(".card-title").text(`Question ${i + 1} / ${total}`)
                 $(".card-text").text(currentQuestion.question)
                 $("#A").text(currentQuestion.answer[0])
                 $("#B").text(currentQuestion.answer[1])
@@ -189,3 +200,7 @@ function goHome() {
     $("#homescreen").show()
 }
 
+function showHS() {
+    $("main").children().hide()
+    $("#chart").show()
+}
